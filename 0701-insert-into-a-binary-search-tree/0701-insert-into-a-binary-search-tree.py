@@ -10,8 +10,6 @@ class Solution:
             return TreeNode(val)
         
         def insert(root,val):
-            if not root:
-                return 
             if root.left == None and val < root.val:
                 root.left = TreeNode(val)
                 return
