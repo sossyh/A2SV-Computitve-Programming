@@ -5,18 +5,18 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def areSame(self, p, q):
-        
-        if not p and not q:
-            return True
-        if not p or not q:
-            return False
-        if p.val != q.val:
-            return False
-        leftpart = self.areSame(p.left, q.right)
-        rightpart = self.areSame(p.right, q.left)
-        
-        return True if leftpart == True and rightpart == True else False
     
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        return self.areSame(root.left, root.right)
+        stack = []
+        stack.append((root.left, root.right))
+        
+        while stack:
+            r1, r2 = stack.pop()
+            if r1 == None and r2 == None:
+                continue
+            if not r1 or not r2 or r2.val != r1.val:
+                return False
+            stack.append((r1.left, r2.right))
+            stack.append((r1.right, r2.left))
+            
+        return True
