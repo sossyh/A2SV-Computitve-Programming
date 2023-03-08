@@ -14,10 +14,12 @@ class Solution:
         return max(lft, rgt)
         
     def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        lft = 1 + self.helper(root.left)
+        rgt = 1 + self.helper(root.right)
         
-        return self.helper(root)
-        
-        
+        return max(lft, rgt)
         
         
         
