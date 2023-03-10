@@ -5,21 +5,21 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    def helper(self, root , min_, max_):
+        if not root:
+            return True
+        if root.val <= min_ or root.val >= max_:
+            return False
+        
+        
+        left = self.helper(root.left, min_, root.val)
+        right = self.helper(root.right, root.val, max_)
+        
+        return (left and right)
     
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        if root == None:
-            return True
+        return self.helper(root, float("-inf"), float("inf"))
         
-        stack = [(root, float("-inf"), float("inf"))]
         
-        while stack:
-            ans, min_, max_ = stack.pop()
-            if ans == None:
-                continue
-            if ans.val <= min_ or ans.val >= max_:
-                return False
             
-            stack.append((ans.left, min_, ans.val))
-            stack.append((ans.right, ans.val, max_))  
-            
-        return True
+       
