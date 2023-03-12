@@ -6,11 +6,10 @@
 #         self.right = right
 class Solution:
     def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        wid = 0
-        collast = 0
-        colfirst = 0
+        width = 0
         queue = deque()
         queue.append((root, 1))
+        
         while queue:
             mini, maxi = float("inf"), float("-inf")
             for i in range(len(queue)):
@@ -23,9 +22,10 @@ class Solution:
                 if a.right:
                     idxr = (2 * idx) + 1
                     queue.append((a.right, idxr))
-            print(mini, maxi)
-            wid = max(wid, maxi - mini + 1)
-        return wid
+        
+            width = max(width, maxi - mini + 1)
+            
+        return width
             
                 
             
