@@ -9,10 +9,11 @@ class Solution:
             queue.append(end)
             
             if end >= k-1:
-                while queue[0] < end + 1 - k:
-                    queue.popleft()
-                
-                result.append(nums[queue[0]])
-
+                if queue[0] >= end + 1 - k:
+                    result.append(nums[queue[0]])
+                else:
+                    while queue[0] < end + 1 - k:
+                        queue.popleft()
+                    result.append( nums[queue[0]] )
                 
         return result
