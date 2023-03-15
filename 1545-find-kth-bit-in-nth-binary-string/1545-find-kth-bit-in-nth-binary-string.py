@@ -1,32 +1,13 @@
-class Solution:
-    def reverse(self, s):
-        lst = list(s)
-        l, r =0, len(lst) - 1
-        while l < r:
-            lst[l], lst[r] = lst[r], lst[l]
-            l += 1
-            r -= 1
-        return "".join(lst)
-            
-    def invert(self, s):
-        ans = ""
-        for i in s:
-            if i == '0':
-                ans += '1'
-            else:
-                ans += '0'
-        return ans
-    
-        
+class Solution:        
     def findKthBit(self, n: int, k: int) -> str:
+        if n == 1:
+            return "0"
         
-        def former(n):
-            if n == 1:
-                return "0"
-            ans = former(n - 1)
-            inverted = self.invert(ans)
-            rever = self.reverse(inverted)
-            return ans + "1" + rever
-        
-        res = former(n)
-        return res[k - 1]
+        half = ((pow(2,n)-1) // 2) + 1
+        if k < half:
+            return self.findKthBit(n-1, k)
+        elif k > half:
+            newk = (pow(2, n)) - k
+            return  str(1 - int(self.findKthBit(n-1, newk)))
+        else:
+            return "1"
