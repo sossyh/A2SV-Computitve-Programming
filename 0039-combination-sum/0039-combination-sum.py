@@ -7,7 +7,7 @@ class Solution:
             if cadsum == target:
                 result.append(lst[:])
                 return
-            if cadsum > target or idx >= n:
+            if idx >= n or (target - cadsum) < candidates[idx]:
                 idx += 1
                 return
             
@@ -17,6 +17,7 @@ class Solution:
             lst.pop()
             backtrack(lst, cadsum, idx + 1)
         
+        candidates.sort()
         backtrack([], 0, 0)            
             
         return result
