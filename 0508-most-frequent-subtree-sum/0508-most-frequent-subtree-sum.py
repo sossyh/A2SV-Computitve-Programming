@@ -26,8 +26,10 @@ class Solution:
         final = helper(root)
         d[final] += 1
         
+        max_ = max(d.values())
+        
         for item, freq in d.items():
-            if freq == max(d.values()):
+            if freq == max_:
                 result.append(item) 
         
         return result
