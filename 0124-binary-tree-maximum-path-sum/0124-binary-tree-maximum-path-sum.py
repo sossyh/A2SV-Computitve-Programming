@@ -35,7 +35,7 @@ class Solution:
                 self.sums = max(self.sums, currsum, root.val)
                 return rights + root.val
         
-        self.sums = max(helper(root), self.sums)
+        helper(root)
         
         return self.sums
             
