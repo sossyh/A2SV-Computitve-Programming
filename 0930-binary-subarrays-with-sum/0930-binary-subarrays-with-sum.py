@@ -15,7 +15,6 @@ class Solution:
             if i not in d:
                 d[i] = 0
             d[i] += 1
-        print(d)
         
         return count
                 
