@@ -1,0 +1,14 @@
+from collections import defaultdict
+node = int(input())
+operations = int(input())
+graph = defaultdict(list)
+for i in range(operations):
+    opera = list(map(int, input().split()))
+    if opera[0] == 1:
+        graph[opera[1]].append(opera[2])
+        graph[opera[2]].append(opera[1])
+    elif opera[0] == 2:
+        if opera[1]:
+            print(*graph[opera[1]])
+        else:
+            print("")
