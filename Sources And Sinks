@@ -1,0 +1,23 @@
+
+source = []
+sink = []
+adjMatrix = []
+n = int(input())
+for i in range(n):
+    row = list(map(int, input().split()))
+    adjMatrix.append(row)
+
+for j in range(len(adjMtrix)):
+    rowflag, colFlag = True, True
+    for k in range(len(j)):
+        if adjMatrix[j][k] == 1:   
+            rowflag = False
+        if adjMatrix[k][j] == 1:
+            colflag = False            
+    if rowflag:
+      sink.append(i+1)
+    if colflag:
+      source.append(j + 1)
+
+print(len(source), *source)
+print(len(sink), *sink)
