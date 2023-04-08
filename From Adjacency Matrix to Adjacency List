@@ -1,0 +1,11 @@
+from collections import defaultdict
+n = int(input())
+graph = defaultdict(list)
+for j in range(n):
+    row = list(map(int, input().split()))
+    for i in range(len(row)):
+        if row[i] > 0:
+            graph[j+1].append(i+1)
+
+for key in graph:
+    print(len(graph[key]), *graph[key])
