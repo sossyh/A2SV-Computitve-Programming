@@ -11,7 +11,6 @@ class Solution:
         for i in range(len(result)):
             for j in range(len(result)):
                 newgrid = [ l[j: j+3] for l in grid[i : i + 3]]
-                print(newgrid)
                 maxe = self.maxelement(newgrid)
                 result[i][j] = maxe
 
