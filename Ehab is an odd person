@@ -1,0 +1,21 @@
+n = int(input())
+
+arr = list(map(int, input().split()))
+
+alleven = True
+allodd = False
+ocount = 0
+
+for i in arr:
+    if i % 2 != 0:
+        alleven = False
+        ocount += 1
+
+if ocount == len(arr):
+    allodd = True
+
+        
+if alleven or allodd:
+    print(*arr)
+else:
+    print(*sorted(arr))
