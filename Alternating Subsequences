@@ -1,0 +1,21 @@
+t = int(input())
+
+for _ in range(t):
+    n = int(input())
+    arr = list(map(int, input().split()))
+    ans = 0
+    
+    start = 0
+    pos= -float("inf")
+    ans2 = []
+    
+    for end in range(n):
+        if (arr[start] > 0 and arr[end] > 0) or (arr[start] < 0 and arr[end] < 0):
+            pos = max(pos, arr[end])
+        else:
+            ans += pos
+            pos = arr[end]
+            start = end
+            
+    ans += pos
+    print(ans)
