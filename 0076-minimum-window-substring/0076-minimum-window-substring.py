@@ -23,6 +23,8 @@ class Solution:
                 window[m] -= 1
                 if m in count and window[m] < count[m]:
                     have -= 1
+                if window[m] == 0:
+                    del window[m]
                 
                 start += 1
         
