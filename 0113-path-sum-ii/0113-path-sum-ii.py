@@ -12,17 +12,22 @@ class Solution:
         result = []
         
         def path(root, candidates):
-            if not root:
-                return
-            
             candidates.append(root.val)
             if not root.left and not root.right:
-                if sum(candidates)  == targetSum:
+                if sum(candidates) == targetSum:
                     result.append(candidates[:])
+                print(candidates)
+                # candidates.pop()
+                return
             
-            path(root.left, candidates)
-            path(root.right, candidates)
-            candidates.pop()
+            if root.left:
+                path(root.left, candidates)
+                candidates.pop()
+            
+            if root.right:
+                path(root.right, candidates)
+                candidates.pop()
+            
         
         path(root, [])
 
