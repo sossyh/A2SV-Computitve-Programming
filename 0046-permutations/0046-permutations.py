@@ -18,7 +18,7 @@ class Solution:
                     backtrack(lst, idx + 1)
                     
                     lst.pop()
-                    used ^= (1 << i)
+                    used &= ~(1 << i)
             
             
             
