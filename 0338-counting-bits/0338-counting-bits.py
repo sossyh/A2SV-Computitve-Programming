@@ -3,12 +3,14 @@ class Solution:
         result = []
         
         for i in range(n+1):
-            count = 0
-            while i != 0:
+            c = 0
+            
+            while i:
                 if i & 1:
-                    count += 1
-                i >>= 1
-            result.append(count)
+                    c += 1
+                
+                i = i >> 1
+            
+            result.append(c)
         
         return result
-            
