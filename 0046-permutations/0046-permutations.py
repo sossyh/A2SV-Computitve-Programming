@@ -1,26 +1,28 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         result = []
-        n = len(nums)
-        visited = set()
+        used = 0
         
         def backtrack(lst, idx):
-            if len(lst) == len(nums):
+            nonlocal used
+            
+            if idx == len(nums):
                 result.append(lst[:])
                 return
             
             for i in range(len(nums)):
-                if nums[i] not in visited:
-                    
+                if not (used & (1 << i)):
                     lst.append(nums[i])
-                    visited.add(nums[i])
+                    used |= (1 << i)
                     
-                    backtrack(lst, i + 1)
+                    backtrack(lst, idx + 1)
                     
                     lst.pop()
-                    visited.remove(nums[i])
-                    
-        
+                    used ^= (1 << i)
+            
+            
+            
+            
         backtrack([], 0)
         
         return result
