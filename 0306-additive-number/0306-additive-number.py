@@ -16,7 +16,7 @@ class Solution:
                         sequence.append(int(prefix))
                         if backtrack(idx+1, num[i+1:]) and len(sequence) >= 3:
                             return True
-                        print(sequence)
+        
                         sequence.pop()
                 else:
                     if prefix == '0' or prefix[0] != '0':
@@ -24,7 +24,7 @@ class Solution:
                             sequence.append(int(prefix))
                             if backtrack(idx+1, num[i+1:]):
                                 return True
-                            print(sequence)
+                                
                             sequence.pop()
         
         
