@@ -6,7 +6,7 @@ class Solution:
         def backtrack(lst, idx):
             nonlocal used
             
-            if idx == len(nums):
+            if len(lst) == len(nums):
                 result.append(lst[:])
                 return
             
