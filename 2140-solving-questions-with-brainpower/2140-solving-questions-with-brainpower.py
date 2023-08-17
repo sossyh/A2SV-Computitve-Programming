@@ -2,22 +2,16 @@ class Solution:
     def mostPoints(self, questions: List[List[int]]) -> int:
         n = len(questions)
         
-        @cache
-        def backtrack(idx):
-            if idx == n - 1:
-                return questions[n-1][0]
-            
-            if idx >= n:
-                return 0
-            
-            newi = idx + questions[idx][1] + 1
-            ans1 = backtrack(newi) + questions[idx][0]
-            ans2 = backtrack(idx + 1)
-            
-            return max(ans1, ans2)
+        dp = [0] * n
         
-        return backtrack(0)
+        for i in range(n-1, -1, -1):
+            considernext = dp[i+1] if i < (n-1) else 0
             
+            considercurrent = questions[i][0] + (dp[(questions[i][1]+1+i)] if (questions[i][1]+1+i) < n else 0)
+            
+            dp[i] = max(considernext, considercurrent)
+        
+        return dp[0]
             
 
             
