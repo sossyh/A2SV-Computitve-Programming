@@ -3,19 +3,21 @@
 
 class Solution:
     def firstBadVersion(self, n: int) -> int:
-        right = n
-        left = 1
-        best = n
+        low, high = 1, n
+        best = None
         
-        while left <= right:
-            mid = left + (right - left )//2
+        while low <= high:
+            mid = low + (high - low) // 2
+            
             if isBadVersion(mid):
-                right = mid - 1
                 best = mid
+                high = mid - 1
+            
             else:
-                left = mid + 1
-                
+                low = mid + 1
+        
+        
         return best
                 
-                
             
+        
