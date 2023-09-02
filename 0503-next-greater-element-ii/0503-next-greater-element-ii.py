@@ -5,12 +5,10 @@ class Solution:
         stack = []
         
         for i in range(2*n):
-            
-            while stack and nums[stack[-1]] < nums[i % n]:
+            while stack and nums[i%n] > nums[stack[-1]]:
                 idx = stack.pop()
-                val = nums[idx]
-                result[idx] = nums[i % n]
-            stack.append(i % n)
+                result[idx] = nums[i%n]
             
-        return result
+            stack.append(i%n)
         
+        return result
