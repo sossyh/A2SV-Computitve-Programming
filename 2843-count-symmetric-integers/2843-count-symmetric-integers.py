@@ -5,15 +5,9 @@ class Solution:
         for i in range(low, high+1):
             n = len(str(i))
             if n % 2 == 0:
-                b = 0
-                a = 0
-                num = str(i)
-                for k in range(n//2):
-                    a += int(num[k])
-                for l in range(n//2, n):
-                    b += int(num[l])
+                num = [int(k) for k in str(i)]
                 
-                if b == a:
+                if sum(num[:n//2]) == sum(num[n//2:n]):
                     count += 1
 
         return count
