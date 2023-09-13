@@ -25,7 +25,12 @@ class Solution:
 
             
             
-            ans = max(ans, firstmax + secondmax + 1)
+            if secondmax == 0:
+                ans = max(ans, firstmax + 1)
+
+            else:
+                ans = max(ans, firstmax + secondmax + 1)
+
                 
             return firstmax+1
         
