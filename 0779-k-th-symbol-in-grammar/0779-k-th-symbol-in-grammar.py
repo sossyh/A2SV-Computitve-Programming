@@ -3,12 +3,17 @@ class Solution:
         if n == 1:
             return 0
         
-        half = pow(2, n - 1) // 2
+        a = self.kthGrammar(n-1, math.ceil(k/2))
         
-        if k <= half:
-            return self.kthGrammar(n-1, k)
+        if a == 0 and k % 2 == 1:
+            return 0
+        
+        elif a == 0 and k % 2 == 0:
+            return 1
+        
+        elif a == 1 and k % 2 == 1:
+            return 1
+        
         else:
-            newk = k - half
-            return 1 - self.kthGrammar(n-1, newk)
-
-        
+            return 0
+            
