@@ -1,21 +1,34 @@
 class Solution:
-    def minSteps(self, n: int) -> int:
-        ans = 0
-        visited = set()
+    def devisors(self, n):
         
-        i = 2
+        i = (n // 2) 
         
-        while i*i <= n:
-            while n % i == 0:
-                ans += i
-                n //= i
+        while i > 1:
+            if n % i == 0:
+                return i
             
-            i += 1
+            i -= 1
         
-        if n > 1:
-            ans += n
+        return "prime"
+    
+    def minSteps(self, n: int) -> int:
         
-        return ans
+        keyboard = [i for i in range(n+1)]
+        
+        for i in range(n+1):
+            if i == 1:
+                keyboard[i] = 0
+            elif i == 2:
+                keyboard[i] = 2
+            
+            elif self.devisors(i) == "prime":
+                keyboard[i] = i
+            
+            else:
+                a = self.devisors(i)
+                b = i // a
+                keyboard[i] = keyboard[a] + b
         
         
+        return keyboard[n]
         
