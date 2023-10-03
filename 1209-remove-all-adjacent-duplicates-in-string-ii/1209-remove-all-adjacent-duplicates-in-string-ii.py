@@ -10,7 +10,7 @@ class Solution:
             else:
                 stack.append((s[i], 1))
            
-            while stack and stack[-1][0] == s[i] and stack[-1][1] == k:
+            while stack and stack[-1][1] == k:
                 stack.pop()
                 poped = True
             
