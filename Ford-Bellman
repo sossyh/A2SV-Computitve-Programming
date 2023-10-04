@@ -1,0 +1,65 @@
+C++
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+    vector<int> dist(n, 30000);
+    dist[0] = 0;
+    vector<vector<int>> graph;
+
+    for (int i = 0; i < m; ++i) {
+        int i_val, j_val, w;
+        cin >> i_val >> j_val >> w;
+        graph.push_back({i_val, j_val, w});
+    }
+
+    for (int _ = 0; _ < n - 1; ++_) {
+        for (const vector<int>& edge : graph) {
+            int i = edge[0];
+            int j = edge[1];
+            int w = edge[2];
+            if (dist[i - 1] != 30000 && dist[i - 1] + w < dist[j - 1]) {
+                dist[j - 1] = dist[i - 1] + w;
+            }
+        }
+    }
+
+    for (int d : dist) {
+        cout << d << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+Python
+
+
+n, m = map(int, input().split())
+dist = [30000 for i in range(n)]
+dist[0] = 0
+graph = []
+
+for i in range(m):
+    i, j, w = map(int, input().split())
+    graph.append((i,j,w))
+    
+for _ in range(n-1):
+    for i, j, w in graph:
+        if dist[i-1] != 30000 and dist[i-1] + w < dist[j-1]:
+            dist[j-1] = dist[i-1] + w
+
+print(*dist)
