@@ -2,7 +2,7 @@ class Solution:
     def majorityElement(self, nums: List[int]) -> List[int]:
         freq = Counter(nums)
         n = len(nums)
-        k = math.floor(n/3)
+        k = n // 3
        
         
         numsFreqMoreThanOneThihrd = []
