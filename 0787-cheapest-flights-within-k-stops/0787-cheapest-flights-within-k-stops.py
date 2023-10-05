@@ -5,7 +5,7 @@ class Solution:
         dp[src] = 0
         prev = dp.copy()
         
-        for i in range(k+1):
+        for i in range(k + 1):
             for u, v, w in flights:
                 dp[v] = min(dp[v], prev[u] + w)
             prev = dp.copy()
