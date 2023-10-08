@@ -7,28 +7,32 @@
 class Solution:
       
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+        if not root:
+            return 0
+        
         self.count = 0
-        d = {0:1}
+        prefix_dict = {0: 1}
         
-        def helper(root, summ):
-            if not root:
-                return
+        def traverse_tree(root, curr_total):
             
-            summ += root.val
-                        
-            if (summ - targetSum) in d:
-                self.count += d[summ - targetSum]
             
-            if summ not in d:
-                d[summ] = 0
-            d[summ] += 1
+            if curr_total - targetSum in prefix_dict:
+                self.count += prefix_dict[curr_total - targetSum]
             
-            helper(root.left, summ)
-            helper(root.right, summ)
+            if curr_total not in prefix_dict:
+                prefix_dict[curr_total] = 0
+                       
+            prefix_dict[curr_total] += 1
             
-            d[summ] -= 1
+            if root.left:
+                traverse_tree(root.left, curr_total + root.left.val)
+            
+            if root.right:
+                traverse_tree(root.right, curr_total + root.right.val)
+            
+            prefix_dict[curr_total] -= 1
         
-        helper(root, 0)
+        traverse_tree(root, root.val)
         
         return self.count
             
