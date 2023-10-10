@@ -1,31 +1,35 @@
 class Solution:
+    def lps_list(self, p):
+        lps = [0] * len(p)
+        i = 0
+
+        for j in range(1, len(p)):
+            while i and p[i] != p[j]:
+                i = lps[i - 1]
+
+            if p[i] == p[j]:
+                i += 1
+                lps[j] = i
+                
+        return lps
+    
     def strStr(self, haystack: str, needle: str) -> int:
         if len(needle) > len(haystack):
             return -1
         
-        a = len(needle)
-        k = a
-        needles_hash = 0
+        lps = self.lps_list(needle)
         
-        for i in needle:
-            needles_hash += (ord(i) - 96) * (27 ** (k - 1))
-            # needles_hash %= (10**9 + 7)
-            k -= 1
+        pattern_i = 0
         
-        curr_hash = 0
-        start = 0
-        
-        for end in range(len(haystack)):
-            i = haystack[end]
-            curr_hash = (curr_hash * 27) + (ord(i) - 96)
+        for j in range(len(haystack)):
+            while pattern_i and haystack[j] != needle[pattern_i]:
+                pattern_i = lps[pattern_i - 1]
             
-            if end >= a:
-                j = ord(haystack[start]) - 96
-                # print(end, haystack[start:end+1])
-                curr_hash -= (j * (27 ** (a))) 
-                start += 1
-            
-            if needles_hash == curr_hash:
-                return start
+            if haystack[j] == needle[pattern_i]:
+                
+                if pattern_i == len(needle) - 1:
+                    return j + 1 - len(needle) 
+                
+                pattern_i += 1
         
         return -1
