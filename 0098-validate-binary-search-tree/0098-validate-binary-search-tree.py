@@ -5,20 +5,22 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def helper(self, root , min_, max_):
-        if not root:
-            return True
-        if root.val <= min_ or root.val >= max_:
+    def validate(self, root, left_bound, right_bound):
+        if root.val <= left_bound or root.val >= right_bound:
             return False
         
+        valid = True
+        if root.left:
+            valid = valid and self.validate(root.left, left_bound, root.val)
         
-        left = self.helper(root.left, min_, root.val)
-        right = self.helper(root.right, root.val, max_)
+        if root.right:
+            valid = valid and self.validate(root.right, root.val, right_bound)
         
-        return (left and right)
-    
+        return valid
+        
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        return self.helper(root, float("-inf"), float("inf"))
+        return self.validate(root, -inf, inf)
+        
         
         
             
