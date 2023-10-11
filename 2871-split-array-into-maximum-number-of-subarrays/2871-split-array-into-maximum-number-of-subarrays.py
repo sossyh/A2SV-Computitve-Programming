@@ -1,6 +1,6 @@
 class Solution:
     def maxSubarrays(self, nums: List[int]) -> int:
-        all_and = nums[0]
+        all_and = pow(2, 32) - 1
         
         for i in nums:
             all_and &= i
