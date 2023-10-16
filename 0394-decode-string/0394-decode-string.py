@@ -1,9 +1,7 @@
 class Solution:
     def decodeString(self, s: str) -> str:
         
-        final_string = ""
         stack = []
-        curr = ""
         curr_digit = 0
       
         
