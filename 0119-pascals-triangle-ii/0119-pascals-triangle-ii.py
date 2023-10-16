@@ -3,13 +3,11 @@ class Solution:
         if rowIndex == 0:
             return [1]
         
+        res = [1]
         prev = self.getRow(rowIndex - 1)
-        curr = [1]
+        for i in range(1, rowIndex):
+            res.append(prev[i-1] + prev[i])
         
-        for i in range(len(prev) - 1):
-            curr.append(prev[i] + prev[i+1])
+        res.append(1)
         
-        curr.append(1)
-        
-        return curr
-        
+        return res
