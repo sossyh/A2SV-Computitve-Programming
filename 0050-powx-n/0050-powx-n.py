@@ -3,15 +3,25 @@ class Solution:
         if x == 0:
             return 0
         
-        def helper(num, power):
-            if power == 0:
-                return 1
-            res = helper(num * num, power//2)
-            return res if power%2 == 0 else num * res
+        if x == 1:
+            return 1
         
-        ans = helper(x, abs(n))
+        if n == 0:
+            return 1
         
-        return ans if n >= 0 else 1/ ans
         
-            
-            
+        
+        if n % 2 == 1:
+            a = self.myPow(x, abs(n) // 2)
+            value = a * a * x
+            if n < 0:
+                return 1 / (value)
+            return value
+        else:
+            a = self.myPow(x, abs(n) // 2)
+            value = a * a
+            if n < 0:
+                return 1/(value)
+            return value
+        
+        
