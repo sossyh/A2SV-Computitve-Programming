@@ -1,9 +1,12 @@
 class Solution:
     def maxAlternatingSum(self, nums: List[int]) -> int:
+        memo = {}
         
         
-        @cache
         def dp(idx, idxparityeven):
+            if (idx, idxparityeven) in memo:
+                return memo[(idx, idxparityeven)]
+            
             if idx >= len(nums):
                 return 0
             
@@ -13,6 +16,7 @@ class Solution:
             
             notpick = dp(idx + 1, idxparityeven)
             
+            memo[(idx, idxparityeven)] = max(pick, notpick)
             return max(pick, notpick)
         
         return dp(0, True)
