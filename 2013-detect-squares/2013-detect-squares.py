@@ -16,13 +16,13 @@ class DetectSquares:
         x, y = point[0], point[1]
         
         for qx, qy in self.lst:
-            if x == qx or y == qy or abs(qx - x) != abs(qy - y):
-                continue
+            if x != qx and y != qy and abs(qx - x) == abs(qy - y):
+                # continue
                 
-            first_point = (x, qy)
-            second_point = (qx, y)
-            total += self.hash[(x, qy)] * self.hash[(qx, y)]
-        
+                first_point = (x, qy)
+                second_point = (qx, y)
+                total += self.hash[(x, qy)] * self.hash[(qx, y)]
+
         return total
                 
 
